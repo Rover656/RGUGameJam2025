@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Button enable-rich-text="false" name="Button" style="background-color: rgba(0, 0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; flex-direction: row;">
+        <ui:VisualElement name="VisualElement" style="width: 32px; height: 32px; background-image: url(&quot;project://database/Assets/Sprites/ConveyorStraight.png?fileID=-256842942&amp;guid=82d279381362148c1973e6d7456598e1&amp;type=3#ConveyorStraight_11&quot;); max-width: 32px; max-height: 32px; min-width: 32px; min-height: 32px;" />
+        <ui:VisualElement style="flex-direction: column;">
+            <ui:Label text="%BUILDABLE_NAME%" style="align-items: flex-end; align-self: flex-start; white-space: normal;" />
+            <ui:Label text="$%BUILDABLE_COST%" style="align-items: flex-end; align-self: flex-start; white-space: normal; color: rgb(0, 255, 37);" />
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

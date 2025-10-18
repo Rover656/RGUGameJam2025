@@ -5,13 +5,15 @@ namespace Game.Components
 {
     public class CameraDragging : MonoBehaviour
     {
-        public float DragSpeed = 6;
-        private Vector3 _dragOrigin;
+        public float DragSpeed = 8;
+
+        private Camera _camera;
         private InputAction _moveAxis;
         private InputAction _zoom;
 
         void Start()
         {
+            _camera = GetComponent<Camera>();
             _moveAxis = InputSystem.actions.FindAction("Camera Movement");
             _zoom = InputSystem.actions.FindAction("Camera Zoom");
         }
@@ -19,7 +21,7 @@ namespace Game.Components
         void Update()
         {
             var zoom = _zoom.ReadValue<float>();
-            Camera.main.orthographicSize = Mathf.Min(10, Mathf.Max(3, Camera.main.orthographicSize + -zoom * 6 * Time.deltaTime));
+            _camera.orthographicSize = Mathf.Min(10, Mathf.Max(3, _camera.orthographicSize + -zoom * 6 * Time.deltaTime));
             
             var movement = _moveAxis.ReadValue<Vector2>();
             if (movement.sqrMagnitude == 0)

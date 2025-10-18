@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f0850c9b3f418e876e20b3d4eb492e, type: 3}
+  m_Name: Straight Conveyor
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Resources.Buildable
+  Prefab: {fileID: 7032550190635955968, guid: d5f03859eb6e3435d8387b968ee48b5a, type: 3}
+  Description: Straight Conveyor
+  Cost: 1

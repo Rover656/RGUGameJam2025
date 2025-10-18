@@ -11,7 +11,7 @@ namespace Game
         private Grid _grid;
         private readonly Dictionary<Vector3Int, GameObject> _gridContents = new();
         
-        private void Awake()
+        private void OnEnable()
         {
             _grid = GetComponent<Grid>();
         }
@@ -27,6 +27,8 @@ namespace Game
 
         public void Register(GameObject gameObject)
         {
+            // Can be called earlier than OnEnable unfortunately.
+            _grid ??= GetComponent<Grid>();
             var cellPos = _grid.WorldToCell(gameObject.transform.position);
             if (!_gridContents.TryAdd(cellPos, gameObject))
             {

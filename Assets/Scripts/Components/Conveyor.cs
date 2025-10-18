@@ -19,9 +19,8 @@ namespace Game.Components
         private List<ConveyorItem> _items = new();
         private List<GameObject> _itemRenderers = new();
 
-        protected override void Start()
+        private void Start()
         {
-            base.Start();
             for (int i = 0; i < MaxItems; i++)
             {
                 var renderer = Instantiate(ItemRendererPrefab);

@@ -7,18 +7,18 @@ namespace Game.Components
     {
         protected WorldGrid WorldGrid;
         
-        protected virtual void Start()
+        private void OnEnable()
         {
             WorldGrid = FindFirstObjectByType<WorldGrid>();
             if (WorldGrid is null)
             {
                 throw new NullReferenceException("worldGrid is null");
             }
-
+            
             WorldGrid.Register(gameObject);
         }
-
-        private void OnDestroy()
+        
+        private void OnDisable()
         {
             WorldGrid.DeRegister(gameObject);
         }

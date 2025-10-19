@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Resources.Item
   Description: Plastic Spool
   Sprite: {fileID: 21300000, guid: 684e50c399b07d14f84f2f79f0896b16, type: 3}
-  CompletedValue: 10
+  CompletedValue: 20

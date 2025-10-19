@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcecd8d519524fa7a90739d366d7e53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Components.Conveyor
+  standardConveyor: {fileID: 9100000, guid: 0e24ecaa11a2b4afc872f815818ce93b, type: 2}
   InputDirection: 3
   OutputDirection: 1
   ItemRendererPrefab: {fileID: 1997700377137663139, guid: 9c2b79e0e30174fc7bb00f8646ec3166, type: 3}

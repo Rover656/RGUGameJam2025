@@ -2158,7 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e71dd2815fc44569de444bc0c7523a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Components.ItemSink
-  CanBeDestroyed: 1
+  CanBeDestroyed: 0
 --- !u!212 &1744660749
 SpriteRenderer:
   m_ObjectHideFlags: 0

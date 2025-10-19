@@ -28,15 +28,16 @@ namespace Game.Components
         private void Update()
         {
             // Push output
-            if (!_outputQueue.TryPeek(out var itemToSend)) return;
-            
-            var neighbour = WorldGrid.GetNeighbor(gameObject, GetAbsoluteDirection(OutputDirection));
-            var nextSink = neighbour?.GetComponent<IItemSink>();
-
-            if (nextSink is null) return;
-            if (nextSink.AcceptItem(GetAbsoluteDirection(OutputDirection).Opposite(), itemToSend))
+            if (_outputQueue.TryPeek(out var itemToSend))
             {
-                _outputQueue.Dequeue();
+                var neighbour = WorldGrid.GetNeighbor(gameObject, GetAbsoluteDirection(OutputDirection));
+                var nextSink = neighbour?.GetComponent<IItemSink>();
+
+                if (nextSink is null) return;
+                if (nextSink.AcceptItem(GetAbsoluteDirection(OutputDirection).Opposite(), itemToSend))
+                {
+                    _outputQueue.Dequeue();
+                }
             }
             
             if (_currentRecipe is not null)

@@ -66,7 +66,13 @@ namespace Game.Components
                 pos.z = 0;
                 _ghostPreview.transform.position = Grid.WorldToCell(pos);
 
-                if (_worldGrid.IsOccupied(_ghostPreview.transform.position) || Funds < _buildable.Cost)
+                bool isOccupied = _worldGrid.IsOccupied(_ghostPreview.transform.position);
+                foreach (var gridObject in _buildable.Prefab.GetComponentsInChildren<GridMonoBehaviour>())
+                {
+                    isOccupied |= _worldGrid.IsOccupied(_ghostPreview.transform.position + _ghostPreview.transform.rotation * Vector3.Scale(gridObject.transform.position, _ghostPreview.transform.localScale));
+                }
+
+                if (isOccupied || Funds < _buildable.Cost)
                 {
                     _ghostPreviewRenderer.color = Color.red;
                 }

@@ -9,6 +9,7 @@ namespace Game.Components
     {
         public List<Item> Items;
         public float SecondsPerItem;
+        public int BufferSize = 100;
 
         public Direction OutputDirection;
         
@@ -17,12 +18,15 @@ namespace Game.Components
 
         private void Update()
         {
-            _generationCounter += Time.deltaTime;
-            
-            if (_generationCounter >= SecondsPerItem)
+            if (_generated.Count < BufferSize)
             {
-                _generationCounter -= SecondsPerItem;
-                _generated.Enqueue(Items[Random.Range(0, Items.Count)]);
+                _generationCounter += Time.deltaTime;
+            
+                if (_generationCounter >= SecondsPerItem)
+                {
+                    _generationCounter -= SecondsPerItem;
+                    _generated.Enqueue(Items[Random.Range(0, Items.Count)]);
+                }
             }
 
             if (_generated.Count == 0) return;

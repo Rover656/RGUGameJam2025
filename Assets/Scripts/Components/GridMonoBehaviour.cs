@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Game.Components
 {
-    public abstract class GridMonoBehaviour : MonoBehaviour
+    public class GridMonoBehaviour : MonoBehaviour
     {
+        public bool CanBeDestroyed = true;
         protected WorldGrid WorldGrid;
         
         private void OnEnable()

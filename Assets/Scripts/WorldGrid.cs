@@ -25,6 +25,17 @@ namespace Game
             return _gridContents.GetValueOrDefault(cellPos);
         }
 
+        [CanBeNull]
+        public GameObject GetAt(Vector3Int pos)
+        {
+            if (_gridContents.TryGetValue(pos, out GameObject content))
+            {
+                return content;
+            }
+            
+            return null;
+        }
+
         public bool IsOccupied(Vector3 position)
         {
             var cellPos = _grid.WorldToCell(position);

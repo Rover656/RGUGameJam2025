@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45f0850c9b3f418e876e20b3d4eb492e, type: 3}
-  m_Name: Straight Conveyor
+  m_Name: Machine
   m_EditorClassIdentifier: Assembly-CSharp::Game.Resources.Buildable
-  Preview: {fileID: -302438022, guid: 82d279381362148c1973e6d7456598e1, type: 3}
-  Prefab: {fileID: 7032550190635955968, guid: d5f03859eb6e3435d8387b968ee48b5a, type: 3}
-  Description: Straight Conveyor
-  Cost: 5
+  Preview: {fileID: 21300000, guid: f0653bd629d881a40b4494de5400fed1, type: 3}
+  Prefab: {fileID: 5038833783658606038, guid: 50896d24c6cd44d0abb9b25d1593ef07, type: 3}
+  Description: Factory
+  Cost: 250
   Configurations:
   - Rotation: {x: 0, y: 0, z: 0}
     Scale: {x: 1, y: 1, z: 1}

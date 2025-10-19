@@ -15,7 +15,7 @@ MonoBehaviour:
   Preview: {fileID: 21300000, guid: 47c01992cc320c7449a9023452f31a2b, type: 3}
   Prefab: {fileID: 1585746094392631082, guid: 958f5cc02a2a9534e8188f769531970e, type: 3}
   Description: Curved Conveyor
-  Cost: 1
+  Cost: 5
   Configurations:
   - Rotation: {x: 0, y: 0, z: 0}
     Scale: {x: 1, y: 1, z: 1}

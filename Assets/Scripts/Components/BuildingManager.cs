@@ -1,4 +1,3 @@
-using System;
 using Game.Resources;
 using UnityEngine;
 using UnityEngine.EventSystems;

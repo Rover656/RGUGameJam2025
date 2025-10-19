@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Metal Can
   m_EditorClassIdentifier: Assembly-CSharp::Game.Resources.Item
   Description: Metal Can
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 7408ff64816a19149a23d2fb5166621c, type: 3}
   CompletedValue: -5

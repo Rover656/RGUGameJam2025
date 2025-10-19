@@ -8,7 +8,7 @@ namespace Game.Components
 {
     public class Conveyor : GridMonoBehaviour, IItemSink
     {
-        public const float SecondsPerItem = 2;
+        public const float SecondsPerItem = 1;
         public const int MaxItems = 4;
         
         public Direction InputDirection;

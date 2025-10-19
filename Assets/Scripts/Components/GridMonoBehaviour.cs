@@ -25,7 +25,7 @@ namespace Game.Components
 
         public Direction GetAbsoluteDirection(Direction direction)
         {
-            return direction.Rotated(transform.rotation);
+            return direction.InvertWith(transform.localScale).Rotated(transform.rotation);
         }
     }
 }

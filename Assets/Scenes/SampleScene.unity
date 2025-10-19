@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0bead06134672a409e38473106628ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0653bd629d881a40b4494de5400fed1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1658,7 +1658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2a88f390fcc8bb458cd71db2b1f4c03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1896,6 +1896,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689923956}
   m_CullTransparentMesh: 1
+--- !u!1 &844082555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844082557}
+  - component: {fileID: 844082556}
+  m_Layer: 0
+  m_Name: BuildingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &844082556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844082555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7548ff6a485840f4b30c09e9a117684e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Components.BuildingManager
+  GhostPrefab: {fileID: 1012427825975722172, guid: 990e51f8037e24cb79e077fd368999b5, type: 3}
+  Grid: {fileID: 1381026422}
+--- !u!4 &844082557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844082555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 970.78687, y: 472.50406, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860282263
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,7 +2595,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41fcea54152a1cc459c11bdc162e9f5e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3546,6 +3592,7 @@ GameObject:
   - component: {fileID: 1357187784}
   - component: {fileID: 1357187783}
   - component: {fileID: 1357187782}
+  - component: {fileID: 1357187785}
   m_Layer: 5
   m_Name: Conveyor Corner
   m_TagString: Untagged
@@ -3618,7 +3665,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357187783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1357187785}
+        m_TargetAssemblyTypeName: Game.UI.BuildingAction, Assembly-CSharp
+        m_MethodName: Build
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1357187783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3657,6 +3716,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357187780}
   m_CullTransparentMesh: 1
+--- !u!114 &1357187785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357187780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b204d80fa80343e28ce9db771bd0c804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.BuildingAction
+  Buildable: {fileID: 11400000, guid: 72de167bf31f84eb1b4847c7b0feda8e, type: 2}
 --- !u!1 &1357859982
 GameObject:
   m_ObjectHideFlags: 0
@@ -3669,6 +3741,7 @@ GameObject:
   - component: {fileID: 1357859986}
   - component: {fileID: 1357859985}
   - component: {fileID: 1357859984}
+  - component: {fileID: 1357859987}
   m_Layer: 5
   m_Name: Conveyor
   m_TagString: Untagged
@@ -3741,7 +3814,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357859985}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1357859987}
+        m_TargetAssemblyTypeName: Game.UI.BuildingAction, Assembly-CSharp
+        m_MethodName: Build
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1357859985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3780,6 +3865,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357859982}
   m_CullTransparentMesh: 1
+--- !u!114 &1357859987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357859982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b204d80fa80343e28ce9db771bd0c804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.BuildingAction
+  Buildable: {fileID: 11400000, guid: 9dd8056b4c9324dc2b2cf434c23361c0, type: 2}
 --- !u!1 &1381026421
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd8e5c629648424f83b9f6f4b3e1ecb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4290,7 +4388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c8e2c1e9cf9900449cc43b0938fb15d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4726,7 +4824,7 @@ Transform:
   m_GameObject: {fileID: 1744660746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 4, z: 0}
+  m_LocalPosition: {x: 6, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5630,7 +5728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -256842942, guid: 82d279381362148c1973e6d7456598e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b72a6c5532bb76148821dc875a2d7b3b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5840,3 +5938,4 @@ SceneRoots:
   - {fileID: 1533862685}
   - {fileID: 1654136682}
   - {fileID: 1514823901}
+  - {fileID: 844082557}

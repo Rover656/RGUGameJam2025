@@ -64,6 +64,34 @@ namespace Game
             throw new ArgumentOutOfRangeException();
         }
 
+        public static Direction InvertWith(this Direction direction, Vector3 scale)
+        {
+            if (scale.x < 0)
+            {
+                return direction switch
+                {
+                    Direction.North => Direction.North,
+                    Direction.East => Direction.West,
+                    Direction.South => Direction.South,
+                    Direction.West => Direction.East,
+                    _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+                };
+            }
+            else if (scale.y < 0)
+            {
+                return direction switch
+                {
+                    Direction.North => Direction.South,
+                    Direction.East => Direction.East,
+                    Direction.South => Direction.North,
+                    Direction.West => Direction.West,
+                    _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+                };
+            }
+
+            return direction;
+        }
+
         public static Direction Opposite(this Direction direction)
         {
             return direction switch

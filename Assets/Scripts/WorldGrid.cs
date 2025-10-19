@@ -25,6 +25,12 @@ namespace Game
             return _gridContents.GetValueOrDefault(cellPos);
         }
 
+        public bool IsOccupied(Vector3 position)
+        {
+            var cellPos = _grid.WorldToCell(position);
+            return _gridContents.ContainsKey(cellPos);
+        }
+
         public void Register(GameObject gameObject)
         {
             // Can be called earlier than OnEnable unfortunately.

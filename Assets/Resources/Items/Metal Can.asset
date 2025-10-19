@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 807e15c87c6b44309cb802c2989a3d87, type: 3}
-  m_Name: Plastic Bottle
+  m_Name: Metal Can
   m_EditorClassIdentifier: Assembly-CSharp::Game.Resources.Item
-  Description: Plastic Bottle
-  Sprite: {fileID: 21300000, guid: f47b80321f41b4483b70ed08922ac614, type: 3}
+  Description: Metal Can
+  Sprite: {fileID: 0}
   CompletedValue: -5

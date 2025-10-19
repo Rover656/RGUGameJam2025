@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807e15c87c6b44309cb802c2989a3d87, type: 3}
   m_Name: Metal Bar
   m_EditorClassIdentifier: Assembly-CSharp::Game.Resources.Item
-  Description: 
+  Description: Metal Bar
   Sprite: {fileID: 21300000, guid: 7c084f8d5ab1e4bc69994285a5560dee, type: 3}
-  CompletedValue: 0
+  CompletedValue: 10

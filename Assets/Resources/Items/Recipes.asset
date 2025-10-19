@@ -16,3 +16,12 @@ MonoBehaviour:
   - Input: {fileID: 11400000, guid: 2d7d6a8391a29494f91e6f0a02ce2b19, type: 2}
     Result: {fileID: 11400000, guid: cbc02e4cca94043cda9b3cb464272cd5, type: 2}
     SecondsToCraft: 1
+  - Input: {fileID: 11400000, guid: cbc02e4cca94043cda9b3cb464272cd5, type: 2}
+    Result: {fileID: 11400000, guid: 1a4f3468cf5a7754396bf2e246a2b236, type: 2}
+    SecondsToCraft: 1
+  - Input: {fileID: 11400000, guid: 2c35f378dccec61438d4ad2c10f94a7a, type: 2}
+    Result: {fileID: 11400000, guid: 785e9694822a54148a1724d22acee9e8, type: 2}
+    SecondsToCraft: 1
+  - Input: {fileID: 11400000, guid: 785e9694822a54148a1724d22acee9e8, type: 2}
+    Result: {fileID: 11400000, guid: 97b4d6cc4269540c3a5b2fac2fe367aa, type: 2}
+    SecondsToCraft: 1

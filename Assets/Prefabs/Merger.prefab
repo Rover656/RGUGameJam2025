@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Components.BeltMerger
   CanBeDestroyed: 1
-  BufferSize: 4
+  BufferSize: 1
   InputADirection: 2
   InputBDirection: 0
   OutputDirection: 1

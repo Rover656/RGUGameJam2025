@@ -15,7 +15,9 @@ namespace Game.Components
         public RecipeCollection RecipeCollection;
         public SpriteRenderer CurrentContentsRenderer;
 
-        [CanBeNull] private Recipe _currentRecipe;
+        [NonSerialized] [CanBeNull] public Recipe SelectedRecipe;
+
+        private bool _isCrafting;
         private float _recipeCounter;
 
         private readonly Queue<Item> _outputQueue = new();
@@ -33,51 +35,50 @@ namespace Game.Components
                 var neighbour = WorldGrid.GetNeighbor(gameObject, GetAbsoluteDirection(OutputDirection));
                 var nextSink = neighbour?.GetComponent<IItemSink>();
 
-                if (nextSink is null) return;
-                if (nextSink.AcceptItem(GetAbsoluteDirection(OutputDirection).Opposite(), itemToSend))
+                if (nextSink is not null && nextSink.AcceptItem(GetAbsoluteDirection(OutputDirection).Opposite(), itemToSend))
                 {
                     _outputQueue.Dequeue();
                 }
             }
+
+            if (SelectedRecipe == null)
+            {
+                return;
+            }
             
-            if (_currentRecipe is not null)
+            if (CurrentContentsRenderer is not null)
             {
-                _recipeCounter += Time.deltaTime;
-
-                if (_recipeCounter < _currentRecipe.SecondsToCraft) return;
-                if (_outputQueue.Count >= BufferSize) return;
-                
-                _outputQueue.Enqueue(_currentRecipe.Result);
-                _currentRecipe = null;
-            }
-            else
-            {
-                if (_outputQueue.Count >= BufferSize) return;
-                
-                var nextInput = Input.Take();
-                if (nextInput is null) return;
-                
-                _currentRecipe = RecipeCollection.Recipes.FirstOrDefault(r => r.Input == nextInput);
-                _recipeCounter = 0;
-
-                if (CurrentContentsRenderer is not null)
+                if (SelectedRecipe is not null)
                 {
-                    if (_currentRecipe is not null)
-                    {
-                        CurrentContentsRenderer.gameObject.SetActive(true);
-                        CurrentContentsRenderer.sprite = _currentRecipe.Result.Sprite;
-                    }
-                    else
-                    {
-                        CurrentContentsRenderer.gameObject.SetActive(false);
-                    }
+                    CurrentContentsRenderer.gameObject.SetActive(true);
+                    CurrentContentsRenderer.sprite = SelectedRecipe.Result.Sprite;
                 }
-
-                if (_currentRecipe is null)
+                else
                 {
-                    _outputQueue.Enqueue(nextInput);
+                    CurrentContentsRenderer.gameObject.SetActive(false);
                 }
             }
+
+            if (!_isCrafting)
+            {
+                var ingredient = Input.Take();
+                if (ingredient is not null)
+                {
+                    _isCrafting = true;
+                    _recipeCounter = 0;
+                }
+                
+                return;
+            }
+            
+            _recipeCounter += Time.deltaTime;
+
+            if (_recipeCounter < SelectedRecipe.SecondsToCraft) return;
+            if (_outputQueue.Count >= BufferSize) return;
+                
+            _outputQueue.Enqueue(SelectedRecipe.Result);
+            _recipeCounter = 0;
+            _isCrafting = false;
         }
     }
 }

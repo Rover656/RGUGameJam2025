@@ -1,7 +1,11 @@
+using System.Collections.Generic;
+using System.Linq;
 using Game.Resources;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Game.Components
 {
@@ -10,7 +14,12 @@ namespace Game.Components
         public GameObject GhostPrefab;
         public Grid Grid;
 
+        public GameObject SplitterPanel;
+        public GameObject MachinePanel;
+
         public int Funds;
+
+        public List<Item> AllItems;
         
         private Buildable _buildable;
         private GameObject _ghostPreview;
@@ -27,6 +36,9 @@ namespace Game.Components
         private InputAction _placeAction;
         private InputAction _cancelAction;
 
+        private BeltSplitter _selectedSplitter;
+        private MachineOutput _selectedMachine;
+
         private void Awake()
         {
             _ghostPreview = Instantiate(GhostPrefab);
@@ -38,6 +50,9 @@ namespace Game.Components
             _cancelAction = InputSystem.actions.FindAction("Cancel");
             
             _worldGrid = FindAnyObjectByType<WorldGrid>();
+            
+            SplitterPanel.SetActive(false);
+            MachinePanel.SetActive(false);
         }
 
         private void Update()
@@ -47,6 +62,12 @@ namespace Game.Components
                 Stop();
                 return;
             }
+            
+            var pos = Camera.main.ScreenToWorldPoint(_mousePosition.ReadValue<Vector2>());
+            pos.x += 0.5f;
+            pos.y += 0.5f;
+            pos.z = 0;
+            var gridPos = Grid.WorldToCell(pos);
             
             if (_mode == Mode.Building)
             {
@@ -59,11 +80,7 @@ namespace Game.Components
                     _ghostPreview.transform.localScale = configuration.Scale;
                 }
                 
-                var pos = Camera.main.ScreenToWorldPoint(_mousePosition.ReadValue<Vector2>());
-                pos.x += 0.5f;
-                pos.y += 0.5f;
-                pos.z = 0;
-                _ghostPreview.transform.position = Grid.WorldToCell(pos);
+                _ghostPreview.transform.position = gridPos;
 
                 bool isOccupied = _worldGrid.IsOccupied(_ghostPreview.transform.position);
                 foreach (var gridObject in _buildable.Prefab.GetComponentsInChildren<GridMonoBehaviour>())
@@ -89,12 +106,6 @@ namespace Game.Components
             }
             else if (_mode == Mode.Destroying)
             {
-                var pos = Camera.main.ScreenToWorldPoint(_mousePosition.ReadValue<Vector2>());
-                pos.x += 0.5f;
-                pos.y += 0.5f;
-                pos.z = 0;
-                var gridPos = Grid.WorldToCell(pos);
-
                 SpriteRenderer targetSpriteRenderer = null;
                 var target = _worldGrid.GetAt(gridPos);
                 if (target?.GetComponent<GridMonoBehaviour>()?.CanBeDestroyed ?? false)
@@ -122,6 +133,63 @@ namespace Game.Components
                 {
                     Destroy(_targettedForDestruction.gameObject);
                 }
+            }
+            else
+            {
+                if (!_placeAction.WasPressedThisFrame()) return;
+                
+                // Interactivity. Hardcoded because we're outta time :)
+                var target = _worldGrid.GetAt(gridPos);
+                var gridBehaviour = target?.GetComponent<GridMonoBehaviour>();
+                if (gridBehaviour is null) return;
+
+                if (gridBehaviour is BeltSplitter beltSplitter)
+                {
+                    _selectedSplitter = beltSplitter;
+                    MachinePanel.SetActive(false);
+                    SplitterPanel.SetActive(true);
+                    
+                    var dropdown = SplitterPanel.GetComponentInChildren<TMP_Dropdown>();
+                    int value = dropdown.options.FindIndex(row => row.image == beltSplitter.OutputAFilter?.Sprite);
+                    if (value < 0)
+                    {
+                        value = 0;
+                    }
+                    dropdown.value = value;
+                } else if (gridBehaviour.CompareTag("Machine"))
+                {
+                    var machineOutput = target.transform.parent.GetComponentInChildren<MachineOutput>();
+                    if (machineOutput != null)
+                    {
+                        _selectedMachine = machineOutput;
+                        MachinePanel.SetActive(true);
+                        SplitterPanel.SetActive(false);
+                        var dropdown = MachinePanel.GetComponentInChildren<TMP_Dropdown>();
+                        dropdown.value = _selectedMachine.SelectedRecipe == null ? 0 : _selectedMachine.RecipeCollection.Recipes.IndexOf(_selectedMachine.SelectedRecipe) + 1;
+                    }
+                }
+            }
+        }
+
+        public void SplitterSelectionChanged(int selection)
+        {
+            var dropdown = SplitterPanel.GetComponentInChildren<TMP_Dropdown>();
+            // Find item
+            var item = AllItems.FirstOrDefault(i => dropdown.options[dropdown.value].image == i.Sprite);
+            _selectedSplitter.OutputAFilter = item;
+        }
+
+        public void MachineSelectionChanged(int selection)
+        {
+            var dropdown = MachinePanel.GetComponentInChildren<TMP_Dropdown>();
+            if (dropdown.value == 0)
+            {
+                _selectedMachine.SelectedRecipe = null;
+            }
+            else
+            {
+                var recipe = _selectedMachine.RecipeCollection.Recipes[dropdown.value - 1];
+                _selectedMachine.SelectedRecipe = recipe;
             }
         }
 
@@ -155,6 +223,9 @@ namespace Game.Components
                 _targettedForDestruction.color = Color.white;
                 _targettedForDestruction = null;
             }
+            
+            MachinePanel.SetActive(false);
+            SplitterPanel.SetActive(false);
         }
 
         private enum Mode

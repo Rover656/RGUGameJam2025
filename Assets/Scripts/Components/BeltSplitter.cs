@@ -7,13 +7,13 @@ namespace Game.Components
 {
     public class BeltSplitter : GridMonoBehaviour, IItemSink
     {
-        public int BufferSize = 4;
+        public int BufferSize = 1;
         
         public Direction InputDirection;
         public Direction OutputADirection;
         public Direction OutputBDirection;
 
-        // [CanBeNull] public Item OutputAFilter;
+        [CanBeNull] public Item OutputAFilter;
         
         private Queue<Item> _inputQueue = new();
         private int _lastOutputSide;
@@ -22,7 +22,7 @@ namespace Game.Components
         {
             if (!_inputQueue.TryPeek(out var itemToSend)) return;
             
-            if (_lastOutputSide == 0)
+            if ((OutputAFilter == null && _lastOutputSide == 0) || (OutputAFilter != null && itemToSend == OutputAFilter))
             {
                 if (TrySend(OutputADirection, itemToSend))
                 {

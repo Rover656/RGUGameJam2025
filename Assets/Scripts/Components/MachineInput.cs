@@ -11,6 +11,8 @@ namespace Game.Components
         public Direction InputDirection;
         public SpriteRenderer CurrentContentsRenderer;
         
+        public MachineOutput Output;
+        
         private readonly Queue<Item> _inputs = new();
 
         void Awake()
@@ -26,6 +28,11 @@ namespace Game.Components
             }
 
             if (_inputs.Count >= BufferSize)
+            {
+                return false;
+            }
+
+            if (Output.SelectedRecipe != null && Output.SelectedRecipe.Input != stack)
             {
                 return false;
             }

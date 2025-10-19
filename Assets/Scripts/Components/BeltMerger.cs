@@ -7,7 +7,7 @@ namespace Game.Components
 {
     public class BeltMerger : GridMonoBehaviour, IItemSink
     {
-        public int BufferSize = 4;
+        public int BufferSize = 1;
         
         public Direction InputADirection;
         public Direction InputBDirection;
